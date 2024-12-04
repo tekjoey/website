@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>TrueNAS Migration | Josiah McKay</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.
+
+
+This is the first in a series of articles detailing my 2024 homelab update.
+I have been running my current homelab off an old 2013 or 2015 iMac I got from my grandfather, as well as a repurposed gaming PC I built in 2020. The iMac has been my application server (using Docker and Docker Compose to manage the applications), and the gaming PC has been my storage server, running TrueNAS CORE, which you may know is FreeBSD based. Nothing wrong with FreeBSD per se, but I am rather partial to Debian, so when I saw that TrueNAS SCALE was Debian-based, I knew I wanted to switch. Additionally, the 8GB of the iMac was starting to be a limiting factor, and I also wanted to do things “more correctly” like using a hypervisor, Kubernetes, and more Infrastructure-as-Code (IaC).">
+<meta name="author" content="Josiah McKay">
+<link rel="canonical" href="http://localhost:1313/posts/truenas-migration/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d72444526d7ecbdb0015438a7fa89054a658bf759d0542e2e5df81ce94b493ee.css" integrity="sha256-1yREUm1&#43;y9sAFUOKf6iQVKZYv3WdBULi5d&#43;BzpS0k&#43;4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/truenas-migration/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="http://localhost:1313/posts/truenas-migration/">
+  <meta property="og:site_name" content="Josiah McKay">
+  <meta property="og:title" content="TrueNAS Migration">
+  <meta property="og:description" content=" This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.
+This is the first in a series of articles detailing my 2024 homelab update.
+I have been running my current homelab off an old 2013 or 2015 iMac I got from my grandfather, as well as a repurposed gaming PC I built in 2020. The iMac has been my application server (using Docker and Docker Compose to manage the applications), and the gaming PC has been my storage server, running TrueNAS CORE, which you may know is FreeBSD based. Nothing wrong with FreeBSD per se, but I am rather partial to Debian, so when I saw that TrueNAS SCALE was Debian-based, I knew I wanted to switch. Additionally, the 8GB of the iMac was starting to be a limiting factor, and I also wanted to do things “more correctly” like using a hypervisor, Kubernetes, and more Infrastructure-as-Code (IaC).">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-03T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TrueNAS Migration">
+<meta name="twitter:description" content="
+This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.
+
+
+This is the first in a series of articles detailing my 2024 homelab update.
+I have been running my current homelab off an old 2013 or 2015 iMac I got from my grandfather, as well as a repurposed gaming PC I built in 2020. The iMac has been my application server (using Docker and Docker Compose to manage the applications), and the gaming PC has been my storage server, running TrueNAS CORE, which you may know is FreeBSD based. Nothing wrong with FreeBSD per se, but I am rather partial to Debian, so when I saw that TrueNAS SCALE was Debian-based, I knew I wanted to switch. Additionally, the 8GB of the iMac was starting to be a limiting factor, and I also wanted to do things “more correctly” like using a hypervisor, Kubernetes, and more Infrastructure-as-Code (IaC).">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "TrueNAS Migration",
+      "item": "http://localhost:1313/posts/truenas-migration/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "TrueNAS Migration",
+  "name": "TrueNAS Migration",
+  "description": " This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.\nThis is the first in a series of articles detailing my 2024 homelab update.\nI have been running my current homelab off an old 2013 or 2015 iMac I got from my grandfather, as well as a repurposed gaming PC I built in 2020. The iMac has been my application server (using Docker and Docker Compose to manage the applications), and the gaming PC has been my storage server, running TrueNAS CORE, which you may know is FreeBSD based. Nothing wrong with FreeBSD per se, but I am rather partial to Debian, so when I saw that TrueNAS SCALE was Debian-based, I knew I wanted to switch. Additionally, the 8GB of the iMac was starting to be a limiting factor, and I also wanted to do things “more correctly” like using a hypervisor, Kubernetes, and more Infrastructure-as-Code (IaC).\n",
+  "keywords": [
+    
+  ],
+  "articleBody": " This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.\nThis is the first in a series of articles detailing my 2024 homelab update.\nI have been running my current homelab off an old 2013 or 2015 iMac I got from my grandfather, as well as a repurposed gaming PC I built in 2020. The iMac has been my application server (using Docker and Docker Compose to manage the applications), and the gaming PC has been my storage server, running TrueNAS CORE, which you may know is FreeBSD based. Nothing wrong with FreeBSD per se, but I am rather partial to Debian, so when I saw that TrueNAS SCALE was Debian-based, I knew I wanted to switch. Additionally, the 8GB of the iMac was starting to be a limiting factor, and I also wanted to do things “more correctly” like using a hypervisor, Kubernetes, and more Infrastructure-as-Code (IaC).\nI decided that the first thing to do was to upgrade my storage server, because once I got that taken care of, I could use it as a storage target. The main problem with my current computer was that it only had space for two HDDs, and I had three, so one was just propped up inside the case. It is a NAS-specific drive, but still, I wanted to give it a better life.\nInitial Testing and Officelabing The first step in any good upgrade path is choosing the new system and validating that it works for your given needs. My needs were simple:\nSupports Debian Have at least 3 spaces for hard drives. Since Debian is over twenty years old, my first point was pretty much taken care of. As for the second, my day job is as desktop support for two departments at a large university, so there is a pretty steady flow of used computers that we get rid of. After getting the approval of my manager, I choose a Dell Precision T1700. It had spaces for four drives, and had support for 32Gb of non-ECC RAM.\nI took a few old hard drives we had lying around at the office, loaded up TrueNAS SCALE, and played around with it in my spare time for a few months. I practiced exporting and importing pools, poked around the UI, and generally got used to the, in my opinion, better interface that SCALE offers over CORE.\nThen school let out and the summer slump of my university job hit. Add to that, my wife was going to be out of town for a week, and I had plenty of time to bring this new computer home and initialize my new storage server. Things had been going just fine in my test environment, so I was excited to finally get that third hard drive properly mounted and protected.\nDEGRADED Ever since I set up my homelab, I had been making backups (some to BackBlaze B2, some to AWS Glacier). Given that, I wasn’t too worried about my data being lost. Worst case scenario, everything breaks and my data is available in the cloud, but not locally accessible.\nSo I brought this new-to-me computer home, exported my current ZFS pool and shut down my gaming-turned-storage computer. I connected my three hard drives and an SSD for the boot drive to the Precision and booted into TrueNAS SCALE. It installed wonderfully, and I was met with the new dashboard I had come to like. I imported my pool, which seemed to go well until something caught my eye…\nPool Status: DEGRADED ⚠️\n“Degraded? How could that be?” I hadn’t had any errors (ever) with TrueNAS before, so I wasn’t sure the severity of the word “degraded”. I clicked on my pool information and saw that one of my three drives had not been recognized 1. Thankfully, TrueNAS uses ZFS and I had a RAIDZ1 VDEV, so no data was lost. But the health was obviously “degraded”.\nPerplexed by this, I exported the pool again and loaded my three drives back to my old server with CORE.\nPool Status: Healthy ✅\nMy old installation was able to read the drive, so it wasn’t a problem with the drive? I ran a short S.M.A.R.T. test on all the drives just to be sure, and it came back with no errors found. Weird.\nThus precipitated a two-day trek through forum posts. What was supposed to be a quick drive switch, turned into a troubleshooting nightmare where nothing would work. One of the first things I found was the 3.3v issue people were having with shucked drives. Mine weren’t shucked, but I gave it a shot. Nothing. I made sure the Precision’s BIOS was up-to-date, it was. The “faulty” drive was discoverable to both my old CORE installation, and to my MacBook (via a USB dock), but not to this Dell Precision. I checked the BIOS of the Dell and intermittently saw only two drives or all three drives show up (usually just the two). I was besides myself.\nAfter two days of troubleshooting, I gave up with that computer and brought home a second. This was a Dell OptiPlex 9020. I could only get 16GB of non-ECC RAM, but it had the same 4 HDD bays as the Precision.\nPool Status: DEGRADED ⚠️\nDegraded again. On a different system entirely with, presumably, a different enough BIOS. The OptiPlex BIOS also failed to register all three drives.\n“This is why people have imposter syndrome.” I thought to myself. “Because sometimes they really don’t know what is going on…”\nAt this point, I had accepted that I was going to have to use the same hardware, but I at least wanted the HDD bays of the Dell pre-built. I carefully dismantled first the pre-built, and then my old gaming/storage computer and transferred the motherboard. Alas, while my standard ATX motherboard fit, the front-panel connectors are some Dell-proprietary connector. I could probably make it work, but I was so discouraged at this point that I just rebuilt my old setup, this time with TrueNAS SCALE. My third HDD is now is a slightly better position, laid flat on the power supply.\nLessons Learned Another good exercise after any kind of deployment or upgrade is to look back and see what could have gone better and what information can we carry into the future.\nThe good While I didn’t exactly plan for downtime, the timing worked out that I would be able to take down my servers for an extended period of time, and would be able to devote sufficient time to fixing any problems. Additionally, I did leave my initial TrueNAS CORE installation intact, so that I could revert to it in the case of a failure (which I ended up having to do). Lastly, my troubleshooting skills came in handy when I had to nail down exactly what the problem was.\nThe bad I didn’t mention this earlier, but one thing I failed to do was to make a backup immediately before I started the swap. My backup schedule was once weekly, and I started this project on a Wednesday, so I could potentially have lost ~4 days of data. In my scenario (where I am the main user and not much data changes) this was acceptable, but part of the purpose of my homelab is learning industry best practice, and “backups before migration” is definitely a best practice.\nLooking forward I don’t know the next time that I will do a migration like this. It’s very probable that the hardware I have will stay the same for a while, with the possible exception of a new case to hold more drives (maybe an all SSD pool!). Regardless, though, next time I do anything major with my TrueNAS Server, I’ll be sure to take a backup of at least all my critical files, even if I can’t wait to play sysadmin again.\nThe drive in question was a TOSHIBA N300 4TB NAS drive, model HDWG440. The two drives that were recognized were TOSHIBA N300 4TB NAS drives, model HDWQ140. Details, details… ↩︎\n",
+  "wordCount" : "1365",
+  "inLanguage": "en",
+  "datePublished": "2024-12-03T00:00:00Z",
+  "dateModified": "2024-12-03T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Josiah McKay"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/truenas-migration/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Josiah McKay",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Josiah McKay (Alt + H)">Josiah McKay</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      TrueNAS Migration
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2024-12-03 00:00:00 +0000 UTC'>3 December, 2024</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Josiah McKay&nbsp;|&nbsp;<a href="https://github.com/tekjoey/website/blob/main/content/posts/truenas-migration.md" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#initial-testing-and-officelabing">Initial Testing and Officelabing</a></li>
+    <li><a href="#degraded">DEGRADED</a></li>
+    <li><a href="#lessons-learned">Lessons Learned</a>
+      <ul>
+        <li><a href="#the-good">The good</a></li>
+        <li><a href="#the-bad">The bad</a></li>
+        <li><a href="#looking-forward">Looking forward</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><blockquote>
+<p><em>This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.</em></p>
+</blockquote>
+<hr>
+<p><em>This is the first in a series of articles detailing my 2024 homelab update.</em></p>
+<p>I have been running my current homelab off an old 2013 or 2015 iMac I got from my grandfather, as well as a repurposed gaming PC I built in 2020. The iMac has been my application server (using Docker and Docker Compose to manage the applications), and the gaming PC has been my storage server, running TrueNAS CORE, which you may know is FreeBSD based. Nothing wrong with FreeBSD per se, but I am rather partial to Debian, so when I saw that TrueNAS SCALE was Debian-based, I knew I wanted to switch. Additionally, the 8GB of the iMac was starting to be a limiting factor, and I also wanted to do things “more correctly” like using a hypervisor, Kubernetes, and more Infrastructure-as-Code (IaC).</p>
+<p>I decided that the first thing to do was to upgrade my storage server, because once I got that taken care of, I could use it as a storage target. The main problem with my current computer was that it only had space for two HDDs, and I had three, so one was just propped up inside the case. It is a NAS-specific drive, but still, I wanted to give it a better life.</p>
+<h2 id="initial-testing-and-officelabing">Initial Testing and Officelabing<a hidden class="anchor" aria-hidden="true" href="#initial-testing-and-officelabing">#</a></h2>
+<p>The first step in any good upgrade path is choosing the new system and validating that it works for your given needs. My needs were simple:</p>
+<ul>
+<li>Supports Debian</li>
+<li>Have at least 3 spaces for hard drives.</li>
+</ul>
+<p>Since Debian is over twenty years old, my first point was pretty much taken care of. As for the second, my day job is as desktop support for two departments at a large university, so there is a pretty steady flow of used computers that we get rid of. After getting the approval of my manager, I choose a Dell Precision T1700. It had spaces for four drives, and had support for 32Gb of non-ECC RAM.</p>
+<p>I took a few old hard drives we had lying around at the office, loaded up TrueNAS SCALE, and played around with it in my spare time for a few months. I practiced exporting and importing pools, poked around the UI, and generally got used to the, in my opinion, better interface that SCALE offers over CORE.</p>
+<p>Then school let out and the summer slump of my university job hit. Add to that, my wife was going to be out of town for a week, and I had plenty of time to bring this new computer home and initialize my new storage server. Things had been going just fine in my test environment, so I was excited to finally get that third hard drive properly mounted and protected.</p>
+<h2 id="degraded">DEGRADED<a hidden class="anchor" aria-hidden="true" href="#degraded">#</a></h2>
+<p>Ever since I set up my homelab, I had been making backups (some to BackBlaze B2, some to AWS Glacier). Given that, I wasn’t too worried about my data being lost. Worst case scenario, everything breaks and my data is available in the cloud, but not locally accessible.</p>
+<p>So I brought this new-to-me computer home, exported my current ZFS pool and shut down my gaming-turned-storage computer. I connected my three hard drives and an SSD for the boot drive to the Precision and booted into TrueNAS SCALE. It installed wonderfully, and I was met with the new dashboard I had come to like. I imported my pool, which seemed to go well until something caught my eye…</p>
+<p><code>Pool Status: DEGRADED ⚠️</code></p>
+<p>“Degraded? How could that be?” I hadn’t had any errors (ever) with TrueNAS before, so I wasn’t sure the severity of the word “degraded”. I clicked on my pool information and saw that one of my three drives had not been recognized <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. Thankfully, TrueNAS uses ZFS and I had a RAIDZ1 VDEV, so no data was lost. But the health was obviously “degraded”.</p>
+<p>Perplexed by this, I exported the pool again and loaded my three drives back to my old server with CORE.</p>
+<p><code>Pool Status: Healthy ✅</code></p>
+<p>My old installation was able to read the drive, so it wasn’t a problem with the drive? I ran a short S.M.A.R.T. test on all the drives just to be sure, and it came back with no errors found. Weird.</p>
+<p>Thus precipitated a two-day trek through forum posts. What was supposed to be a quick drive switch, turned into a troubleshooting nightmare where nothing would work. One of the first things I found was the 3.3v issue people were having with shucked drives. Mine weren’t shucked, but I gave it a shot. Nothing. I made sure the Precision’s BIOS was up-to-date, it was. The “faulty” drive was discoverable to both my old CORE installation, and to my MacBook (via a USB dock), but not to this Dell Precision. I checked the BIOS of the Dell and intermittently saw only two drives or all three drives show up (usually just the two). I was besides myself.</p>
+<p>After two days of troubleshooting, I gave up with that computer and brought home a second. This was a Dell OptiPlex 9020. I could only get 16GB of non-ECC RAM, but it had the same 4 HDD bays as the Precision.</p>
+<p><code>Pool Status: DEGRADED ⚠️</code></p>
+<p>Degraded again. On a different system entirely with, presumably, a different enough BIOS. The OptiPlex BIOS also failed to register all three drives.</p>
+<p>“This is why people have imposter syndrome.” I thought to myself. “Because sometimes they really don’t know what is going on…”</p>
+<p>At this point, I had accepted that I was going to have to use the same hardware, but I at least wanted the HDD bays of the Dell pre-built. I carefully dismantled first the pre-built, and then my old gaming/storage computer and transferred the motherboard. Alas, while my standard ATX motherboard fit, the front-panel connectors are some Dell-proprietary connector. I could probably make it work, but I was so discouraged at this point that I just rebuilt my old setup, this time with TrueNAS SCALE. My third HDD is now is a slightly better position, laid flat on the power supply.</p>
+<h2 id="lessons-learned">Lessons Learned<a hidden class="anchor" aria-hidden="true" href="#lessons-learned">#</a></h2>
+<p>Another good exercise after any kind of deployment or upgrade is to look back and see what could have gone better and what information can we carry into the future.</p>
+<h3 id="the-good">The good<a hidden class="anchor" aria-hidden="true" href="#the-good">#</a></h3>
+<p>While I didn’t exactly plan for downtime, the timing worked out that I would be able to take down my servers for an extended period of time, and would be able to devote sufficient time to fixing any problems. Additionally, I did leave my initial TrueNAS CORE installation intact, so that I could revert to it in the case of a failure (which I ended up having to do). Lastly, my troubleshooting skills came in handy when I had to nail down exactly what the problem was.</p>
+<h3 id="the-bad">The bad<a hidden class="anchor" aria-hidden="true" href="#the-bad">#</a></h3>
+<p>I didn’t mention this earlier, but one thing I failed to do was to make a backup immediately before I started the swap. My backup schedule was once weekly, and I started this project on a Wednesday, so I could potentially have lost ~4 days of data. In my scenario (where I am the main user and not much data changes) this was acceptable, but part of the purpose of my homelab is learning industry best practice, and “backups before migration” is definitely a best practice.</p>
+<h3 id="looking-forward">Looking forward<a hidden class="anchor" aria-hidden="true" href="#looking-forward">#</a></h3>
+<p>I don’t know the next time that I will do a migration like this. It’s very probable that the hardware I have will stay the same for a while, with the possible exception of a new case to hold more drives (maybe an all SSD pool!). Regardless, though, next time I do anything major with my TrueNAS Server, I’ll be sure to take a backup of at least all my critical files, even if I can’t wait to play sysadmin again.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>The drive in question was a TOSHIBA N300 4TB NAS drive, model HDWG440. The two drives that were recognized were TOSHIBA N300 4TB NAS drives, model HDWQ140. Details, details…&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://localhost:1313/">Josiah McKay</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

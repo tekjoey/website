@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2023 Homelab | Josiah McKay</title>
+<meta name="keywords" content="homelab, alpha-blog">
+<meta name="description" content="
+This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.
+
+
+I’ve decided to layout what my homelab looks like now because this summer I hope to change some things.
+Storage
+My current storage server is one that started life as a gaming computer that I built back in 2020. I had gotten a wild itch to build a computer (my first ever build), that admittedly I didn’t really plan much out. I also didn’t really factor in the fact that I am not a gamer. So after I built it I toyed around with Cities:Skylines, Stardew Valley, and other such games, but the computer largely sat unused (or at least under-used).">
+<meta name="author" content="Josiah McKay">
+<link rel="canonical" href="http://localhost:1313/posts/2023-homelab/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d72444526d7ecbdb0015438a7fa89054a658bf759d0542e2e5df81ce94b493ee.css" integrity="sha256-1yREUm1&#43;y9sAFUOKf6iQVKZYv3WdBULi5d&#43;BzpS0k&#43;4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/2023-homelab/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="http://localhost:1313/posts/2023-homelab/">
+  <meta property="og:site_name" content="Josiah McKay">
+  <meta property="og:title" content="2023 Homelab">
+  <meta property="og:description" content=" This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.
+I’ve decided to layout what my homelab looks like now because this summer I hope to change some things.
+Storage My current storage server is one that started life as a gaming computer that I built back in 2020. I had gotten a wild itch to build a computer (my first ever build), that admittedly I didn’t really plan much out. I also didn’t really factor in the fact that I am not a gamer. So after I built it I toyed around with Cities:Skylines, Stardew Valley, and other such games, but the computer largely sat unused (or at least under-used).">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-02T00:00:00+00:00">
+    <meta property="article:tag" content="Homelab">
+    <meta property="article:tag" content="Alpha-Blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2023 Homelab">
+<meta name="twitter:description" content="
+This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.
+
+
+I’ve decided to layout what my homelab looks like now because this summer I hope to change some things.
+Storage
+My current storage server is one that started life as a gaming computer that I built back in 2020. I had gotten a wild itch to build a computer (my first ever build), that admittedly I didn’t really plan much out. I also didn’t really factor in the fact that I am not a gamer. So after I built it I toyed around with Cities:Skylines, Stardew Valley, and other such games, but the computer largely sat unused (or at least under-used).">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "2023 Homelab",
+      "item": "http://localhost:1313/posts/2023-homelab/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2023 Homelab",
+  "name": "2023 Homelab",
+  "description": " This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.\nI’ve decided to layout what my homelab looks like now because this summer I hope to change some things.\nStorage My current storage server is one that started life as a gaming computer that I built back in 2020. I had gotten a wild itch to build a computer (my first ever build), that admittedly I didn’t really plan much out. I also didn’t really factor in the fact that I am not a gamer. So after I built it I toyed around with Cities:Skylines, Stardew Valley, and other such games, but the computer largely sat unused (or at least under-used).\n",
+  "keywords": [
+    "homelab", "alpha-blog"
+  ],
+  "articleBody": " This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.\nI’ve decided to layout what my homelab looks like now because this summer I hope to change some things.\nStorage My current storage server is one that started life as a gaming computer that I built back in 2020. I had gotten a wild itch to build a computer (my first ever build), that admittedly I didn’t really plan much out. I also didn’t really factor in the fact that I am not a gamer. So after I built it I toyed around with Cities:Skylines, Stardew Valley, and other such games, but the computer largely sat unused (or at least under-used).\nThen I discovered homelabing, and suddenly I had a need for networked storage. I purchased three 4TB Toshiba drives and loaded up TrueNAS Core and had myself a fancy little Network Attached Storage server. The computer case I had was really only meant for one hard drive, so two of my hard drives are currently resting in some fairly precarious positions inside the case.\nApplications What is homelabing without applications? I am currently running Ubuntu Server on an old iMac my grandfather gave me. On that server, I am using Docker as the container engine to run the various applications. Along with that, I am using Docker Compose as my “Infrastructure as Code”. Most of my docker containers use Docker Volumes to store data, but for those that store a “significant” amount (which is a metric I do not have a definition for) I use bind-mounts that connect back to my aforementioned TrueNAS server via NFS.\nWhen I first started on this homelab journey, I went a little wild, deploying every application I came across, whether I actually had a need for it or not. After a while (and my wife’s need for a more present husband), I stopped deploying every container under the sun and settled into actually using those I had a use for, and getting rid of those I don’t. Currently, the ones I use are:\nNextcloud w/ Colabora Office: Google Drive replacement Immich: photo storage Authentik: authentication/SSO Firefly-III: personal finance management Homepage: links and mini dashboard Mealie: recipe management Paperless-NGX: virtual filing cabinet Traefik: load balancer/reverse proxy code-server: VS Code environment to access all my docker compose files Dozzel: live log viewer FreshRSS: RSS feeder. I use NetNewsWire on iPhone to actually read articles Homebox: physical inventory management Network I recently upgraded my network gear from the combo-box that Spectrum gave me to a TP-Link OMADA switch and access point with an OPNSense router. I do have three separate VLANS (Trusted, IoT and Guest), but I haven’t actually done any real configuration, so they’re not providing any security benefits.\nFurthermore, I am also using Cloudflare DNS as my only DNS service. This means, if I want a DNS record, I must expose the application to the internet. When I was still using Spectrum’s combo box, I tried setting up PiHole as a container, but for some reason I wasn’t able to get it to work. I haven’t exposed every service to the internet, so some services are still referred to by IP:Port and if I didn’t have Homepage, I would definitely forget which ones were which.\nSummer plans My goals for this summer (2024) are modest, but quite substantial, given the current state of things:\nProper network setup\nFirewall Rules to restrict IoT movement/connections and fallout Internal DNS server so that every service can have a name and I can stop referencing to IP:Port. Route everything with Tailscale (one of the coolest gosh-darn products to ever exist) Transfer to “new” servers. As previously stated, I’m currently running everything off an old iMac. This works, But I’m hitting the limit of what’s possible with its 8GB of RAM. I’ll transition to a more “production” environment by using Proxmox and running everything in Virtual Machines. This will give me the ability to more easily create snapshots/backups and spin up/down resources as needed.\nTransition to use more IaC. Infrastructure as Code is such a neat concept. The idea that my entire stack, from hardware to application, can be described and deployed via a configuration file, which can then be saved, stored, tracked via change control and all the rest, is such a wonderful idea and I want to be part of it. This will probably start off with just using a bit of Ansible and vanilla Kubernetes, but my eventual goal/dream is to learn NixOS and Terraform/OpenTofu and be able to recreate everything with as minimal intervention as possible. Additionally, this would make it easier to create an “emergency script” so that in the (hopefully very distant) future when I die and my family takes over my homelab and network, they would be able to revert it to a “simple” state, or even clean everything up to dispose of/sell.\nWell, that’s about all I have. I’ll have more posts as I preform all the changes I just mentioned. Hopefully I’m able to accomplish all of them.\n#SoliDeoGloria\n",
+  "wordCount" : "862",
+  "inLanguage": "en",
+  "datePublished": "2024-12-02T00:00:00Z",
+  "dateModified": "2024-12-02T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Josiah McKay"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/2023-homelab/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Josiah McKay",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Josiah McKay (Alt + H)">Josiah McKay</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      2023 Homelab
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2024-12-02 00:00:00 +0000 UTC'>2 December, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Josiah McKay&nbsp;|&nbsp;<a href="https://github.com/tekjoey/website/blob/main/content/posts/2023-homelab.md" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#storage">Storage</a></li>
+    <li><a href="#applications">Applications</a></li>
+    <li><a href="#network">Network</a></li>
+    <li><a href="#summer-plans">Summer plans</a></li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><blockquote>
+<p><em>This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.</em></p>
+</blockquote>
+<hr>
+<p>I’ve decided to layout what my homelab looks like now because this summer I hope to change some things.</p>
+<h2 id="storage">Storage<a hidden class="anchor" aria-hidden="true" href="#storage">#</a></h2>
+<p>My current storage server is one that started life as a gaming computer that I built back in 2020. I had gotten a wild itch to build a computer (my first ever build), that admittedly I didn’t really plan much out. I also didn’t really factor in the fact that I am not a gamer. So after I built it I toyed around with Cities:Skylines, Stardew Valley, and other such games, but the computer largely sat unused (or at least under-used).</p>
+<p>Then I discovered homelabing, and suddenly I had a need for networked storage. I purchased three 4TB Toshiba drives and loaded up TrueNAS Core and had myself a fancy little Network Attached Storage server. The computer case I had was really only meant for one hard drive, so two of my hard drives are currently resting in some fairly precarious positions inside the case.</p>
+<h2 id="applications">Applications<a hidden class="anchor" aria-hidden="true" href="#applications">#</a></h2>
+<p>What is homelabing without applications? I am currently running Ubuntu Server on an old iMac my grandfather gave me. On that server, I am using Docker as the container engine to run the various applications. Along with that, I am using Docker Compose as my “Infrastructure as Code”. Most of my docker containers use Docker Volumes to store data, but for those that store a “significant” amount (which is a metric I do not have a definition for) I use bind-mounts that connect back to my aforementioned TrueNAS server via NFS.</p>
+<p>When I first started on this homelab journey, I went a little wild, deploying every application I came across, whether I actually had a need for it or not. After a while (and my wife’s need for a more present husband), I stopped deploying every container under the sun and settled into actually using those I had a use for, and getting rid of those I don’t. Currently, the ones I use are:</p>
+<ul>
+<li>Nextcloud w/ Colabora Office: Google Drive replacement</li>
+<li>Immich: photo storage</li>
+<li>Authentik: authentication/SSO</li>
+<li>Firefly-III: personal finance management</li>
+<li>Homepage: links and mini dashboard</li>
+<li>Mealie: recipe management</li>
+<li>Paperless-NGX: virtual filing cabinet</li>
+<li>Traefik: load balancer/reverse proxy</li>
+<li>code-server: VS Code environment to access all my docker compose files</li>
+<li>Dozzel: live log viewer</li>
+<li>FreshRSS: RSS feeder. I use NetNewsWire on iPhone to actually read articles</li>
+<li>Homebox: physical inventory management</li>
+</ul>
+<h2 id="network">Network<a hidden class="anchor" aria-hidden="true" href="#network">#</a></h2>
+<p>I recently upgraded my network gear from the combo-box that Spectrum gave me to a TP-Link OMADA switch and access point with an OPNSense router. I do have three separate VLANS (Trusted, IoT and Guest), but I haven’t actually done any real configuration, so they’re not providing any security benefits.</p>
+<p>Furthermore, I am also using Cloudflare DNS as my only DNS service. This means, if I want a DNS record, I must expose the application to the internet. When I was still using Spectrum’s combo box, I tried setting up PiHole as a container, but for some reason I wasn’t able to get it to work. I haven’t exposed every service to the internet, so some services are still referred to by IP:Port and if I didn’t have Homepage, I would definitely forget which ones were which.</p>
+<h2 id="summer-plans">Summer plans<a hidden class="anchor" aria-hidden="true" href="#summer-plans">#</a></h2>
+<p>My goals for this summer (2024) are modest, but quite substantial, given the current state of things:</p>
+<p><strong>Proper network setup</strong></p>
+<ul>
+<li>Firewall Rules to restrict IoT movement/connections and fallout</li>
+<li>Internal DNS server so that every service can have a name and I can stop referencing to IP:Port.</li>
+<li>Route everything with Tailscale (one of the coolest gosh-darn products to ever exist)</li>
+</ul>
+<p><strong>Transfer to “new” servers.</strong> As previously stated, I’m currently running everything off an old iMac. This works, But I’m hitting the limit of what’s possible with its 8GB of RAM. I’ll transition to a more “production” environment by using Proxmox and running everything in Virtual Machines. This will give me the ability to more easily create snapshots/backups and spin up/down resources as needed.</p>
+<p><strong>Transition to use more IaC.</strong> Infrastructure as Code is such a neat concept. The idea that my entire stack, from hardware to application, can be described and deployed via a configuration file, which can then be saved, stored, tracked via change control and all the rest, is such a wonderful idea and I want to be part of it. This will probably start off with just using a bit of Ansible and vanilla Kubernetes, but my eventual goal/dream is to learn NixOS and Terraform/OpenTofu and be able to recreate everything with as minimal intervention as possible. Additionally, this would make it easier to create an “emergency script” so that in the (hopefully very distant) future when I die and my family takes over my homelab and network, they would be able to revert it to a “simple” state, or even clean everything up to dispose of/sell.</p>
+<p>Well, that’s about all I have. I’ll have more posts as I preform all the changes I just mentioned. Hopefully I’m able to accomplish all of them.</p>
+<p>#SoliDeoGloria</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/homelab/">Homelab</a></li>
+      <li><a href="http://localhost:1313/tags/alpha-blog/">Alpha-Blog</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://localhost:1313/">Josiah McKay</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

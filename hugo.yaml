@@ -9,7 +9,7 @@ params:
   keywords: [Blog, Portfolio, PaperMod, Hugo, Homelab, self-hosting, linux]
   author: Josiah McKay
 #   images: ["<link or path of image for opengraph, twitter-cards>"]
-  DateFormat: "1 January, 2000"
+  DateFormat: "2 January, 2006"
   defaultTheme: auto # dark, light
   disableThemeToggle: false
 

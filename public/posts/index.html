@@ -143,15 +143,80 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">My 1st post
+    <h2 class="entry-hint-parent">Docker Migration
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
     </h2>
   </header>
   <div class="entry-content">
-    <p>thi sis h1 here is some content
-</p>
+    <p> This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.
+This is the second in a series of articles detailing my 2024 homelab update.
+As I said in my last post, my homelab has consisted of an application and storage server, with the application server being a 2013 iMac running Ubuntu Server 20.04 LTS. This has worked out fine, but I am running up against the 8GB RAM limit of the iMac, especially now that I have deployed Immich as photo storage. I also wanted to run more than just containers (Local DNS, Home Assistant, Kubernetes) so I wanted a hypervisor OS to be able to easily manage all of that. I’ve heard a lot about Proxmox, and since it is basically just Debian plus QEMU I figured it would be a nice easy choice. Plus, it’s free and open source!
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2020-09-15 11:30:03 +0000 +0000'>9 September, 15000</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Josiah McKay</footer>
-  <a class="entry-link" aria-label="post link to My 1st post" href="http://localhost:1313/posts/first-post/"></a>
+  <footer class="entry-footer"><span title='2024-12-04 00:00:00 +0000 UTC'>4 December, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Josiah McKay</footer>
+  <a class="entry-link" aria-label="post link to Docker Migration" href="http://localhost:1313/posts/docker-migration/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">TrueNAS Migration
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.
+This is the first in a series of articles detailing my 2024 homelab update.
+I have been running my current homelab off an old 2013 or 2015 iMac I got from my grandfather, as well as a repurposed gaming PC I built in 2020. The iMac has been my application server (using Docker and Docker Compose to manage the applications), and the gaming PC has been my storage server, running TrueNAS CORE, which you may know is FreeBSD based. Nothing wrong with FreeBSD per se, but I am rather partial to Debian, so when I saw that TrueNAS SCALE was Debian-based, I knew I wanted to switch. Additionally, the 8GB of the iMac was starting to be a limiting factor, and I also wanted to do things “more correctly” like using a hypervisor, Kubernetes, and more Infrastructure-as-Code (IaC).
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-12-03 00:00:00 +0000 UTC'>3 December, 2024</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Josiah McKay</footer>
+  <a class="entry-link" aria-label="post link to TrueNAS Migration" href="http://localhost:1313/posts/truenas-migration/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">2023 Homelab
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.
+I’ve decided to layout what my homelab looks like now because this summer I hope to change some things.
+Storage My current storage server is one that started life as a gaming computer that I built back in 2020. I had gotten a wild itch to build a computer (my first ever build), that admittedly I didn’t really plan much out. I also didn’t really factor in the fact that I am not a gamer. So after I built it I toyed around with Cities:Skylines, Stardew Valley, and other such games, but the computer largely sat unused (or at least under-used).
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-12-02 00:00:00 +0000 UTC'>2 December, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Josiah McKay</footer>
+  <a class="entry-link" aria-label="post link to 2023 Homelab" href="http://localhost:1313/posts/2023-homelab/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Welcome!
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Welcome! Welcome to my site! Here I will be talking about the things that interest me.
+The purposes of this site are x-fold:
+Information archive for myself. I like to homelab and selfhost, and sometimes I forget the things that I have done, or how I did them. Ths site will be a reposatory of all my adventures Information archive for others. The internet is a tremendous invention, allowing the dispursal of information accross the globe nearly instantaniously. I hope that at least some of these posts will be helpful to someone in some way. Evidence for future employers: A resume can only say so much. I hope that this website serves as proof of what I can do to anyone who hapens to be looking. As of the writing, this site is still very new and I am still learning all the options for Hugo and PaperMod (the framework and theme, respectively, that this blog runs off of).
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-12-01 00:00:00 +0000 UTC'>1 December, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Josiah McKay</footer>
+  <a class="entry-link" aria-label="post link to Welcome!" href="http://localhost:1313/posts/welcome/"></a>
 </article>
     </main>
     
