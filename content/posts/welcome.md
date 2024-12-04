@@ -3,7 +3,7 @@ title: 'Welcome!'
 date: '2024-12-04T11:13:59-05:00'
 tags: []
 # author: ["Me", "You"] # multiple authors
-draft: true
+draft: false
 UseHugoToc: true
 editPost:
     URL: "https://github.com/tekjoey/website/blob/main/content"
