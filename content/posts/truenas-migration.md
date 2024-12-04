@@ -3,7 +3,7 @@ title: 'TrueNAS Migration'
 date: '2024-12-03'
 tags: ["homelab", "alpha-blog"]
 # author: ["Me", "You"] # multiple authors
-draft: true
+draft: false
 UseHugoToc: true
 editPost:
     URL: "https://github.com/tekjoey/website/blob/main/content"
