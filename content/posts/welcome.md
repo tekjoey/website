@@ -1,10 +1,6 @@
 ---
 title: 'Welcome!'
-<<<<<<< HEAD
-date: '2024-12-01'
-=======
 date: '2024-12-04'
->>>>>>> 38d0a014028c4122ea4395e04bff5a80c16624aa
 tags: []
 # author: ["Me", "You"] # multiple authors
 draft: false
