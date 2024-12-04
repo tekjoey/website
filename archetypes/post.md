@@ -6,7 +6,7 @@ tags: []
 draft: true
 UseHugoToc: true
 editPost:
-    URL: "https://github.com/tekjoey/website/content"
+    URL: "https://github.com/tekjoey/website/blob/main/content"
     Text: "Suggest Changes" # edit text
     appendFilePath: true # to append file path to Edit link
 
