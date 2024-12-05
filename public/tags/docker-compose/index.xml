@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Docker-Compose on Josiah McKay</title>
+    <link>http://localhost:1313/tags/docker-compose/</link>
+    <description>Recent content in Docker-Compose on Josiah McKay</description>
+    <generator>Hugo -- 0.139.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 04 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/docker-compose/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker Migration</title>
+      <link>http://localhost:1313/posts/docker-migration/</link>
+      <pubDate>Wed, 04 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/docker-migration/</guid>
+      <description>&lt;p&gt;&lt;em&gt;This is the second in a series of articles detailing my 2024 homelab update.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;As I said in my last post, my homelab has consisted of an application and storage server, with the application server being a 2013 iMac running Ubuntu Server 20.04 LTS. This has worked out fine, but I am running up against the 8GB RAM limit of the iMac, especially now that I have deployed Immich as photo storage. I also wanted to run more than just containers (Local DNS, Home Assistant, Kubernetes) so I wanted a hypervisor OS to be able to easily manage all of that. I&amp;rsquo;ve heard a lot about Proxmox, and since it is basically just Debian plus QEMU I figured it would be a nice easy choice. Plus, it&amp;rsquo;s free and open source!&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

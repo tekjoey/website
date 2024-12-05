@@ -6,12 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Docker Migration | Josiah McKay</title>
-<meta name="keywords" content="homelab, alpha-blog">
-<meta name="description" content="
-This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.
-
-
-This is the second in a series of articles detailing my 2024 homelab update.
+<meta name="keywords" content="migration, docker, docker-compose">
+<meta name="description" content="This is the second in a series of articles detailing my 2024 homelab update.
 As I said in my last post, my homelab has consisted of an application and storage server, with the application server being a 2013 iMac running Ubuntu Server 20.04 LTS. This has worked out fine, but I am running up against the 8GB RAM limit of the iMac, especially now that I have deployed Immich as photo storage. I also wanted to run more than just containers (Local DNS, Home Assistant, Kubernetes) so I wanted a hypervisor OS to be able to easily manage all of that. I&rsquo;ve heard a lot about Proxmox, and since it is basically just Debian plus QEMU I figured it would be a nice easy choice. Plus, it&rsquo;s free and open source!">
 <meta name="author" content="Josiah McKay">
 <link rel="canonical" href="http://localhost:1313/posts/docker-migration/">
@@ -63,23 +59,19 @@ As I said in my last post, my homelab has consisted of an application and storag
 </noscript><meta property="og:url" content="http://localhost:1313/posts/docker-migration/">
   <meta property="og:site_name" content="Josiah McKay">
   <meta property="og:title" content="Docker Migration">
-  <meta property="og:description" content=" This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.
-This is the second in a series of articles detailing my 2024 homelab update.
+  <meta property="og:description" content="This is the second in a series of articles detailing my 2024 homelab update.
 As I said in my last post, my homelab has consisted of an application and storage server, with the application server being a 2013 iMac running Ubuntu Server 20.04 LTS. This has worked out fine, but I am running up against the 8GB RAM limit of the iMac, especially now that I have deployed Immich as photo storage. I also wanted to run more than just containers (Local DNS, Home Assistant, Kubernetes) so I wanted a hypervisor OS to be able to easily manage all of that. I’ve heard a lot about Proxmox, and since it is basically just Debian plus QEMU I figured it would be a nice easy choice. Plus, it’s free and open source!">
-  <meta property="og:locale" content="en">
+  <meta property="og:locale" content="en-us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-12-04T00:00:00+00:00">
     <meta property="article:modified_time" content="2024-12-04T00:00:00+00:00">
-    <meta property="article:tag" content="Homelab">
-    <meta property="article:tag" content="Alpha-Blog">
+    <meta property="article:tag" content="Migration">
+    <meta property="article:tag" content="Docker">
+    <meta property="article:tag" content="Docker-Compose">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker Migration">
-<meta name="twitter:description" content="
-This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.
-
-
-This is the second in a series of articles detailing my 2024 homelab update.
+<meta name="twitter:description" content="This is the second in a series of articles detailing my 2024 homelab update.
 As I said in my last post, my homelab has consisted of an application and storage server, with the application server being a 2013 iMac running Ubuntu Server 20.04 LTS. This has worked out fine, but I am running up against the 8GB RAM limit of the iMac, especially now that I have deployed Immich as photo storage. I also wanted to run more than just containers (Local DNS, Home Assistant, Kubernetes) so I wanted a hypervisor OS to be able to easily manage all of that. I&rsquo;ve heard a lot about Proxmox, and since it is basically just Debian plus QEMU I figured it would be a nice easy choice. Plus, it&rsquo;s free and open source!">
 
 
@@ -109,12 +101,12 @@ As I said in my last post, my homelab has consisted of an application and storag
   "@type": "BlogPosting",
   "headline": "Docker Migration",
   "name": "Docker Migration",
-  "description": " This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.\nThis is the second in a series of articles detailing my 2024 homelab update.\nAs I said in my last post, my homelab has consisted of an application and storage server, with the application server being a 2013 iMac running Ubuntu Server 20.04 LTS. This has worked out fine, but I am running up against the 8GB RAM limit of the iMac, especially now that I have deployed Immich as photo storage. I also wanted to run more than just containers (Local DNS, Home Assistant, Kubernetes) so I wanted a hypervisor OS to be able to easily manage all of that. I\u0026rsquo;ve heard a lot about Proxmox, and since it is basically just Debian plus QEMU I figured it would be a nice easy choice. Plus, it\u0026rsquo;s free and open source!\n",
+  "description": "This is the second in a series of articles detailing my 2024 homelab update.\nAs I said in my last post, my homelab has consisted of an application and storage server, with the application server being a 2013 iMac running Ubuntu Server 20.04 LTS. This has worked out fine, but I am running up against the 8GB RAM limit of the iMac, especially now that I have deployed Immich as photo storage. I also wanted to run more than just containers (Local DNS, Home Assistant, Kubernetes) so I wanted a hypervisor OS to be able to easily manage all of that. I\u0026rsquo;ve heard a lot about Proxmox, and since it is basically just Debian plus QEMU I figured it would be a nice easy choice. Plus, it\u0026rsquo;s free and open source!\n",
   "keywords": [
-    "homelab", "alpha-blog"
+    "migration", "docker", "docker-compose"
   ],
-  "articleBody": " This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.\nThis is the second in a series of articles detailing my 2024 homelab update.\nAs I said in my last post, my homelab has consisted of an application and storage server, with the application server being a 2013 iMac running Ubuntu Server 20.04 LTS. This has worked out fine, but I am running up against the 8GB RAM limit of the iMac, especially now that I have deployed Immich as photo storage. I also wanted to run more than just containers (Local DNS, Home Assistant, Kubernetes) so I wanted a hypervisor OS to be able to easily manage all of that. I’ve heard a lot about Proxmox, and since it is basically just Debian plus QEMU I figured it would be a nice easy choice. Plus, it’s free and open source!\nSimilar to my TrueNAS upgrade, I wanted to first get a feel for the Proxmox installation process and understand how to use it before I deployed it for real. Again, similar to my TrueNAS upgrade, I found a spare computer from work and loaded up Proxmox.\nThe installation process was simple and once I got it setup, I found the UI fairly intuitive, if a bit dated.\n",
-  "wordCount" : "231",
+  "articleBody": "This is the second in a series of articles detailing my 2024 homelab update.\nAs I said in my last post, my homelab has consisted of an application and storage server, with the application server being a 2013 iMac running Ubuntu Server 20.04 LTS. This has worked out fine, but I am running up against the 8GB RAM limit of the iMac, especially now that I have deployed Immich as photo storage. I also wanted to run more than just containers (Local DNS, Home Assistant, Kubernetes) so I wanted a hypervisor OS to be able to easily manage all of that. I’ve heard a lot about Proxmox, and since it is basically just Debian plus QEMU I figured it would be a nice easy choice. Plus, it’s free and open source!\nSimilar to my TrueNAS upgrade, I wanted to first get a feel for the Proxmox installation process and understand how to use it before I deployed it for real. Again, similar to my TrueNAS upgrade, I found a spare computer from work and loaded up Proxmox.\nThe installation process was simple and once I got it setup, I found the UI fairly intuitive, if a bit dated.\n",
+  "wordCount" : "198",
   "inLanguage": "en",
   "datePublished": "2024-12-04T00:00:00Z",
   "dateModified": "2024-12-04T00:00:00Z",
@@ -179,13 +171,18 @@ As I said in my last post, my homelab has consisted of an application and storag
         </div>
         <ul id="menu">
             <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
                 <a href="http://localhost:1313/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
                 </a>
             </li>
             <li>
@@ -194,8 +191,8 @@ As I said in my last post, my homelab has consisted of an application and storag
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/resume" title="resume">
-                    <span>resume</span>
+                <a href="http://localhost:1313/about" title="About &amp; Contact">
+                    <span>About &amp; Contact</span>
                 </a>
             </li>
         </ul>
@@ -209,16 +206,12 @@ As I said in my last post, my homelab has consisted of an application and storag
     <h1 class="post-title entry-hint-parent">
       Docker Migration
     </h1>
-    <div class="post-meta"><span title='2024-12-04 00:00:00 +0000 UTC'>4 December, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Josiah McKay&nbsp;|&nbsp;<a href="https://github.com/tekjoey/website/blob/main/content/posts/docker-migration.md" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
+    <div class="post-meta"><span title='2024-12-04 00:00:00 +0000 UTC'>4 December, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Josiah McKay&nbsp;|&nbsp;<a href="https://github.com/tekjoey/website/blob/main/content/posts/docker-migration.md" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
 
 </div>
   </header> 
 
-  <div class="post-content"><blockquote>
-<p><em>This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.</em></p>
-</blockquote>
-<hr>
-<p><em>This is the second in a series of articles detailing my 2024 homelab update.</em></p>
+  <div class="post-content"><p><em>This is the second in a series of articles detailing my 2024 homelab update.</em></p>
 <p>As I said in my last post, my homelab has consisted of an application and storage server, with the application server being a 2013 iMac running Ubuntu Server 20.04 LTS. This has worked out fine, but I am running up against the 8GB RAM limit of the iMac, especially now that I have deployed Immich as photo storage. I also wanted to run more than just containers (Local DNS, Home Assistant, Kubernetes) so I wanted a hypervisor OS to be able to easily manage all of that. I&rsquo;ve heard a lot about Proxmox, and since it is basically just Debian plus QEMU I figured it would be a nice easy choice. Plus, it&rsquo;s free and open source!</p>
 <p>Similar to my TrueNAS upgrade, I wanted to first get a feel for the Proxmox installation process and understand how to use it before I deployed it for real. Again, similar to my TrueNAS upgrade, I found a spare computer from work and loaded up Proxmox.</p>
 <p>The installation process was simple and once I got it setup, I found the UI fairly intuitive, if a bit dated.</p>
@@ -228,8 +221,9 @@ As I said in my last post, my homelab has consisted of an application and storag
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/homelab/">Homelab</a></li>
-      <li><a href="http://localhost:1313/tags/alpha-blog/">Alpha-Blog</a></li>
+      <li><a href="http://localhost:1313/tags/migration/">Migration</a></li>
+      <li><a href="http://localhost:1313/tags/docker/">Docker</a></li>
+      <li><a href="http://localhost:1313/tags/docker-compose/">Docker-Compose</a></li>
     </ul>
   </footer>
 </article>

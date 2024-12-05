@@ -1,22 +1,37 @@
 baseURL: "https://josiah.mckay.one/"
 title: Josiah McKay
+languageCode: "en-us"
 theme: PaperMod
+
+taxonomies:
+  category: categories
+  tag: tags
 
 menu:
   main:
-  - name: Archive
-    url: archives
-    weight: 5
+
   - name: Search
     url: search/
-    weight: 10
+    weight: 1
+
+  - name: Categories
+    url: categories/
+    weight: 3
   - name: Tags
     url: tags/
-    weight: 10
-  - name: resume
-    url: resume
+    weight: 4
+  - name: Archive
+    url: archives
+    weight: 2
+  - name: About & Contact
+    url: about
+    weight: 5
 
-
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
@@ -24,7 +39,7 @@ params:
   description: "Personal Website of Josiah McKay"
   keywords: [Blog, Portfolio, PaperMod, Hugo, Homelab, self-hosting, linux]
   author: Josiah McKay
-#   images: ["<link or path of image for opengraph, twitter-cards>"]
+  #   images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "2 January, 2006"
   defaultTheme: auto # dark, light
   disableThemeToggle: false
@@ -35,11 +50,26 @@ params:
   ShowCodeCopyButtons: true
   ShowRssButtonInSectionTermList: true
   showtoc: true
+  UseHugoToc: true
+
+
+  # For Search
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 4
+    # limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
+    keys: ["title", "permalink", "summary", "content"]
+
+
+
 #   ShowShareButtons: true
 #   ShowPostNavLinks: true
 #   ShowCodeCopyButtons: false
 #   ShowWordCount: true
-#   UseHugoToc: true
 #   disableSpecial1stPost: false
 #   disableScrollToTop: false
 #   comments: false
@@ -62,8 +92,8 @@ params:
 #     iconHeight: 35
 
   homeInfoParams:
-    title: "Hi there 👋"
-    content: Can be Info, links, about...
+    title: "`# TODO - Write a title`"
+    content: "`# TODO - Write a description`"
   socialIcons: # optional
     - name: "LinkedIn"
       url: "https://www.linkedin.com/in/josiahdmckay/"
@@ -83,36 +113,13 @@ params:
 #     hiddenInList: true # hide on list pages and home
 #     hiddenInSingle: true # hide on single page
 
-#   editPost:
-#     URL: "https://github.com/<path_to_repo>/content"
-#     Text: "Suggest Changes" # edit text
-#     appendFilePath: true # to append file path to Edit link
+  editPost:
+    URL: "https://github.com/tekjoey/website/blob/main/content"
+    text: "Suggest Changes" # edit text
+    appendFilePath: true # to append file path to Edit link
 
-#   # for search
-#   # https://fusejs.io/api/options.html
-#   fuseOpts:
-#     isCaseSensitive: false
-#     shouldSort: true
-#     location: 0
-#     distance: 1000
-#     threshold: 0.4
-#     minMatchCharLength: 0
-#     limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
-#     keys: ["title", "permalink", "summary", "content"]
-# menu:
-#   main:
-#     - identifier: categories
-#       name: categories
-#       url: /categories/
-#       weight: 10
-#     - identifier: tags
-#       name: tags
-#       url: /tags/
-#       weight: 20
-#     - identifier: example
-#       name: example.org
-#       url: https://example.org
-#       weight: 30
+
+
 # # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 # pygmentsUseClasses: true
 # markup:

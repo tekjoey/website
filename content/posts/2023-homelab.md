@@ -1,14 +1,11 @@
 ---
 title: '2023 Homelab'
 date: '2024-12-02'
-tags: ["homelab", "alpha-blog"]
-# author: ["Me", "You"] # multiple authors
+tags:
+    - tour
+categories:
+    - Homelab
 draft: false
-UseHugoToc: true
-editPost:
-    URL: "https://github.com/tekjoey/website/blob/main/content"
-    Text: "Suggest Changes" # edit text
-    appendFilePath: true # to append file path to Edit link
 
 # weight: 1
 # aliases: ["/first"]

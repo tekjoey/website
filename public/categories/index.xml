@@ -5,7 +5,15 @@
     <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on Josiah McKay</description>
     <generator>Hugo -- 0.139.0</generator>
-    <language>en</language>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 04 Dec 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Homelab</title>
+      <link>http://localhost:1313/categories/homelab/</link>
+      <pubDate>Wed, 04 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/homelab/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

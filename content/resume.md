@@ -1,12 +1,10 @@
 ---
-title: Resume of Josiah McKay
+title: Resume
 author: " "
 ShowReadingTime: false
 ShowBreadCrumbs: false
-showtoc: false
+showtoc: true
 ---
-
-
 ## Education & Certification
 
 - **Millersville University**

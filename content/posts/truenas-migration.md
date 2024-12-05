@@ -1,14 +1,14 @@
 ---
 title: 'TrueNAS Migration'
 date: '2024-12-03'
-tags: ["homelab", "alpha-blog"]
-# author: ["Me", "You"] # multiple authors
+tags:
+    - migration
+    - truenas
+    - hardware
+    - torubleshooting
+categories:
+    - Homelab
 draft: false
-UseHugoToc: true
-editPost:
-    URL: "https://github.com/tekjoey/website/blob/main/content"
-    Text: "Suggest Changes" # edit text
-    appendFilePath: true # to append file path to Edit link
 
 # weight: 1
 # aliases: ["/first"]
@@ -28,7 +28,7 @@ editPost:
 #     hidden: true # only hide on current single page
 
 ---
-> *This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.*
+> *This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in the summer of 2024.*
 
 ***
 

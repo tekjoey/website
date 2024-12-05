@@ -1,14 +1,12 @@
 ---
 title: '{{ replace .File.ContentBaseName "-" " " | title }}'
 date: '{{ .Date }}'
-tags: []
-# author: ["Me", "You"] # multiple authors
+tags:
+    - 
+categories:
+    - 
 draft: true
-UseHugoToc: true
-editPost:
-    URL: "https://github.com/tekjoey/website/blob/main/content"
-    Text: "Suggest Changes" # edit text
-    appendFilePath: true # to append file path to Edit link
+
 
 # weight: 1
 # aliases: ["/first"]

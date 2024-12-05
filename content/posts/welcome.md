@@ -2,13 +2,7 @@
 title: 'Welcome!'
 date: '2024-12-01'
 tags: []
-# author: ["Me", "You"] # multiple authors
 draft: false
-UseHugoToc: true
-editPost:
-    URL: "https://github.com/tekjoey/website/blob/main/content"
-    Text: "Suggest Changes" # edit text
-    appendFilePath: true # to append file path to Edit link
 
 # weight: 1
 # aliases: ["/first"]

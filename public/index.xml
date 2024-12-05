@@ -5,7 +5,7 @@
     <link>http://localhost:1313/</link>
     <description>Recent content on Josiah McKay</description>
     <generator>Hugo -- 0.139.0</generator>
-    <language>en</language>
+    <language>en-us</language>
     <lastBuildDate>Wed, 04 Dec 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -13,11 +13,7 @@
       <link>http://localhost:1313/posts/docker-migration/</link>
       <pubDate>Wed, 04 Dec 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/docker-migration/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
-&lt;p&gt;&lt;em&gt;This is the second in a series of articles detailing my 2024 homelab update.&lt;/em&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;em&gt;This is the second in a series of articles detailing my 2024 homelab update.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;As I said in my last post, my homelab has consisted of an application and storage server, with the application server being a 2013 iMac running Ubuntu Server 20.04 LTS. This has worked out fine, but I am running up against the 8GB RAM limit of the iMac, especially now that I have deployed Immich as photo storage. I also wanted to run more than just containers (Local DNS, Home Assistant, Kubernetes) so I wanted a hypervisor OS to be able to easily manage all of that. I&amp;rsquo;ve heard a lot about Proxmox, and since it is basically just Debian plus QEMU I figured it would be a nice easy choice. Plus, it&amp;rsquo;s free and open source!&lt;/p&gt;</description>
     </item>
     <item>
@@ -26,7 +22,7 @@
       <pubDate>Tue, 03 Dec 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/truenas-migration/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in early 2023.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This post was originally posted on a Wordpress blog that I had and forgot about. It is being posted here for completeness of my homelab journey. It was originally posted in the summer of 2024.&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;em&gt;This is the first in a series of articles detailing my 2024 homelab update.&lt;/em&gt;&lt;/p&gt;
@@ -61,21 +57,29 @@
     </item>
     <item>
       <title></title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;h1 id=&#34;i-am-a-christian&#34;&gt;I am a Christian&lt;/h1&gt;
+&lt;p&gt;I believe in the God of the Bible. My believes are consistent with the Westminster Confession of Faith&lt;/p&gt;
+&lt;h1 id=&#34;i-am--a-technology-professional&#34;&gt;I am  a technology professional&lt;/h1&gt;
+&lt;p&gt;I am particularly interested in backend infrastructure &amp;ndash; think server management, configuration management, networking, that sort of stuff. I am continually amazed at the trumendous things that computers are able to do, and I want to be a part of making all of that possible.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Resume</title>
       <link>http://localhost:1313/resume/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/resume/</guid>
-      <description>&lt;h1 id=&#34;josiah-mckay&#34;&gt;JOSIAH MCKAY&lt;/h1&gt;
-&lt;p&gt;Columbia, SC | &lt;a href=&#34;mailto:josiah.mckay@protonmail.com&#34;&gt;josiah.mckay@protonmail.com&lt;/a&gt; | 215-500-4190 (cell)&lt;/p&gt;
-&lt;h2 id=&#34;education--certification&#34;&gt;Education &amp;amp; Certification&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;education--certification&#34;&gt;Education &amp;amp; Certification&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Millersville University&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Bachelor of Arts in Entertainment Technology – May 2021&lt;/p&gt;
+&lt;p&gt;Bachelor of Arts in Entertainment Technology [2021]&lt;/p&gt;
 &lt;p&gt;Minor: Music; General Applied Engineering and Technology&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Community College of the Air Force&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Associates in Applied Engineering - 2020&lt;/p&gt;
+&lt;p&gt;Associates in Applied Engineering [2020]&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;certificates&#34;&gt;Certificates&lt;/h3&gt;
@@ -85,18 +89,32 @@
 &lt;li&gt;CompTIA Security+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;professional-experience&#34;&gt;Professional Experience&lt;/h2&gt;
-&lt;h3 id=&#34;technology-support-technician&#34;&gt;&lt;strong&gt;Technology Support Technician&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;University Of South Carolina | February 2023 – Present&lt;/p&gt;
+&lt;h3 id=&#34;technology-support-technician&#34;&gt;Technology Support Technician&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;University of South Carolina; College of Arts and Sciences&lt;/strong&gt; [February  2023 – Present]&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Took over primary desktop support for Math and Stat departments including inventory for over 150 desktop and laptop computers, Windows 11 migration, documentation of unique departmental needs, and transition of support from email to ServiceNow.&lt;/li&gt;
-&lt;li&gt;Assisted in transitioning three legacy servers to the University’s VMware environment.&lt;/li&gt;
-&lt;li&gt;Updated existing VMs to current security standards.&lt;/li&gt;
-&lt;li&gt;Maintained Active Directory computer and user group records for Math and Stat departments and modified them as appropriate.&lt;/li&gt;
-&lt;li&gt;Troubleshoot Tier 1 network problems.&lt;/li&gt;
-&lt;li&gt;Resolved over 150 Desktop Support incidents.&lt;/li&gt;
+&lt;li&gt;Took over primary desktop support for Mathematics and Statistics departments
+&lt;ul&gt;
+&lt;li&gt;Created inventory and provided continuation of support for over 150 desktop and laptop computers&lt;/li&gt;
+&lt;li&gt;Facilitated Windows 11 migration for over 60 unsupported computers&lt;/li&gt;
+&lt;li&gt;Created and maintained documentation for unique departmental needs&lt;/li&gt;
+&lt;li&gt;Lead the transition of support from email to ServiceNow, decreasing support wait time.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;user-support-technician&#34;&gt;&lt;strong&gt;User Support Technician&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;University of South Carolina | July 2021 – February 2023&lt;/p&gt;</description>
+&lt;/li&gt;
+&lt;li&gt;Administered existing VMs and physical servers
+&lt;ul&gt;
+&lt;li&gt;Assisted in transitioning three legacy servers to the University’s VMware environment.&lt;/li&gt;
+&lt;li&gt;Updated existing VM to current security standards.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Maintained Active Directory computer and user group records for Mathematics and Statistics departments and modified them as appropriate.&lt;/li&gt;
+&lt;li&gt;Resolved over 150 Desktop Support incidents
+&lt;ul&gt;
+&lt;li&gt;Tier 1 Network Issues&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;user-support-technician&#34;&gt;User Support Technician&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;University of South Carolina; College of Arts and Sciences&lt;/strong&gt; [July 2021 – February 2023]&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
