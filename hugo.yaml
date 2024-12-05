@@ -2,6 +2,22 @@ baseURL: "https://josiah.mckay.one/"
 title: Josiah McKay
 theme: PaperMod
 
+menu:
+  main:
+  - name: Archive
+    url: archives
+    weight: 5
+  - name: Search
+    url: search/
+    weight: 10
+  - name: Tags
+    url: tags/
+    weight: 10
+  - name: resume
+    url: resume
+
+
+
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Josiah McKay

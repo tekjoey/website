@@ -2,18 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2024-12-04T11:13:59-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2024-12-04T11:13:59-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/welcome/</loc>
-    <lastmod>2024-12-04T11:13:59-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/2023-homelab/</loc>
-    <lastmod>2024-12-04T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/alpha-blog/</loc>
     <lastmod>2024-12-04T00:00:00+00:00</lastmod>
   </url><url>
@@ -23,12 +11,30 @@
     <loc>http://localhost:1313/tags/homelab/</loc>
     <lastmod>2024-12-04T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2024-12-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2024-12-04T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/</loc>
     <lastmod>2024-12-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/truenas-migration/</loc>
-    <lastmod>2024-12-04T00:00:00+00:00</lastmod>
+    <lastmod>2024-12-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/2023-homelab/</loc>
+    <lastmod>2024-12-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/welcome/</loc>
+    <lastmod>2024-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/resume/</loc>
+  </url><url>
+    <loc>http://localhost:1313/archives/</loc>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
+  </url><url>
+    <loc>http://localhost:1313/search/</loc>
   </url>
 </urlset>

@@ -50,15 +50,53 @@
       <link>http://localhost:1313/posts/welcome/</link>
       <pubDate>Sun, 01 Dec 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/welcome/</guid>
-      <description>&lt;h1 id=&#34;welcome&#34;&gt;Welcome!&lt;/h1&gt;
-&lt;p&gt;Welcome to my site! Here I will be talking about the things that interest me.&lt;/p&gt;
-&lt;p&gt;The purposes of this site are x-fold:&lt;/p&gt;
+      <description>&lt;p&gt;Welcome to my site! Here I will be talking about the things that interest me.&lt;/p&gt;
+&lt;p&gt;The purposes of this site are three-fold:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;Information archive for myself.&lt;/strong&gt; I like to homelab and selfhost, and sometimes I forget the things that I have done, or how I did them. Ths site will be a reposatory of all my adventures&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Information archive for others.&lt;/strong&gt; The internet is a tremendous invention, allowing the dispursal of information accross the globe nearly instantaniously. I hope that at least some of these posts will be helpful to someone in some way.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Evidence for future employers&lt;/strong&gt;: A resume can only say so much. I hope that this website serves as proof of what I can do to anyone who hapens to be looking.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;As of the writing, this site is still very new and I am still learning all the options for &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; and &lt;a href=&#34;https://github.com/adityatelange/hugo-PaperMod&#34;&gt;PaperMod&lt;/a&gt; (the framework and theme, respectively, that this blog runs off of).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/resume/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/resume/</guid>
+      <description>&lt;h1 id=&#34;josiah-mckay&#34;&gt;JOSIAH MCKAY&lt;/h1&gt;
+&lt;p&gt;Columbia, SC | &lt;a href=&#34;mailto:josiah.mckay@protonmail.com&#34;&gt;josiah.mckay@protonmail.com&lt;/a&gt; | 215-500-4190 (cell)&lt;/p&gt;
+&lt;h2 id=&#34;education--certification&#34;&gt;Education &amp;amp; Certification&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Millersville University&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Bachelor of Arts in Entertainment Technology – May 2021&lt;/p&gt;
+&lt;p&gt;Minor: Music; General Applied Engineering and Technology&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Community College of the Air Force&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Associates in Applied Engineering - 2020&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;certificates&#34;&gt;Certificates&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;CompTIA A+&lt;/li&gt;
+&lt;li&gt;CompTIA Network+&lt;/li&gt;
+&lt;li&gt;CompTIA Security+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;professional-experience&#34;&gt;Professional Experience&lt;/h2&gt;
+&lt;h3 id=&#34;technology-support-technician&#34;&gt;&lt;strong&gt;Technology Support Technician&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;University Of South Carolina | February 2023 – Present&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Took over primary desktop support for Math and Stat departments including inventory for over 150 desktop and laptop computers, Windows 11 migration, documentation of unique departmental needs, and transition of support from email to ServiceNow.&lt;/li&gt;
+&lt;li&gt;Assisted in transitioning three legacy servers to the University’s VMware environment.&lt;/li&gt;
+&lt;li&gt;Updated existing VMs to current security standards.&lt;/li&gt;
+&lt;li&gt;Maintained Active Directory computer and user group records for Math and Stat departments and modified them as appropriate.&lt;/li&gt;
+&lt;li&gt;Troubleshoot Tier 1 network problems.&lt;/li&gt;
+&lt;li&gt;Resolved over 150 Desktop Support incidents.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;user-support-technician&#34;&gt;&lt;strong&gt;User Support Technician&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;University of South Carolina | July 2021 – February 2023&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
