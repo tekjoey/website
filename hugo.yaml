@@ -93,7 +93,7 @@ params:
 
   homeInfoParams:
     title: "`# TODO - Write a title`"
-    content: "`# TODO - Write a description`"
+    content: "This site is still being built. Some things are not quite finished, but I hope to get it finished soon."
   socialIcons: # optional
     - name: "LinkedIn"
       url: "https://www.linkedin.com/in/josiahdmckay/"

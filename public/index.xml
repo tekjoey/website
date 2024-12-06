@@ -60,10 +60,8 @@
       <link>http://localhost:1313/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/about/</guid>
-      <description>&lt;h1 id=&#34;i-am-a-christian&#34;&gt;I am a Christian&lt;/h1&gt;
-&lt;p&gt;I believe in the God of the Bible. My believes are consistent with the Westminster Confession of Faith&lt;/p&gt;
-&lt;h1 id=&#34;i-am--a-technology-professional&#34;&gt;I am  a technology professional&lt;/h1&gt;
-&lt;p&gt;I am particularly interested in backend infrastructure &amp;ndash; think server management, configuration management, networking, that sort of stuff. I am continually amazed at the trumendous things that computers are able to do, and I want to be a part of making all of that possible.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Biography coming soon. For now, here is my &lt;a href=&#34;http://localhost:1313/resume/&#34;&gt;resume&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To contact me, email: josiah.mckay [at] protonmail.com&lt;/p&gt;</description>
     </item>
     <item>
       <title>Resume</title>
