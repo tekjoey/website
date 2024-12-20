@@ -8,9 +8,9 @@ draft: false
 ---
 I recently followed a tutorial put out by TechnoTim called "[PostgreSQL Clustering the Hard Way](https://www.youtube.com/watch?v=RHwglGf_z40&t=2457s&pp=ygUJdGVjaG5vdGlt)". It is a fantastic video, he does a good job of walking you step by step though the instructions all while explaining what each thing is doing and what each line of configuration means. After following his tutorial and having my own HA PostgreSQL cluster, I wondered if I could do the same with some webservers. Certainly it should be easy, right? After all, a simple webservers should be the easiest thing to configure because they've been around as long as the internet has.
 
->[!CAUTION] This is not a production-ready tutorial
->My methods in this post are not production ready. This is a quick-and-dirty project I did as a proof of concept; a real HA webserver should have TLS and proper Apache2 sites configured, as well as probably some other things I don't know about.
-# Prerequisite Configuration
+>***My methods in this post are not production ready. This is a quick-and-dirty project I did as a proof of concept; a real HA webserver should have TLS and proper Apache2 sites configured, as well as probably some other things I don't know about.***
+
+## Prerequisite Configuration
 
 Some prerequisites before we get started. I have four servers setup as VMs on a Proxmox cluster. They are all fresh installs of Debian.
 
@@ -22,7 +22,7 @@ Some prerequisites before we get started. I have four servers setup as VMs on a 
 | HA-02  | 192.168.100.21 | HAProxy, keepalived |
 
 The way this will work is `keepalived` will create a virtual IP (VIP) address that our clients can connect to, in my setup that will be `192.168.100.60`. The MAC address that this IP will resolve to (and therefore the machine that our clients should send their requests to) will change depending on who `keepalived` determines is the "MASTER", at first this will be HA-01, but if it goes down, then HA-02 will become the master. `haproxy` on whichever node is the "MASTER" will then equally balance the load between SVR-01 and SVR-02. 
-# Setting up my own HA webserver
+## Setting up my own HA webserver
 
 To have a highly available webserver, one needs multiple webservers. I reused the same VMs I had setup for TechnoTims tutorial (SVR-01 and 02) and just installed Apache2 alongside PostgreSQL.
 
