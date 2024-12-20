@@ -20,6 +20,7 @@ Some prerequisites before we get started. I have four servers setup as VMs on a 
 | SVR-02 | 192.168.100.11 | apache2             |
 | HA-01  | 192.168.100.20 | HAProxy, keepalived |
 | HA-02  | 192.168.100.21 | HAProxy, keepalived |
+
 The way this will work is `keepalived` will create a virtual IP (VIP) address that our clients can connect to, in my setup that will be `192.168.100.60`. The MAC address that this IP will resolve to (and therefore the machine that our clients should send their requests to) will change depending on who `keepalived` determines is the "MASTER", at first this will be HA-01, but if it goes down, then HA-02 will become the master. `haproxy` on whichever node is the "MASTER" will then equally balance the load between SVR-01 and SVR-02. 
 # Setting up my own HA webserver
 
