@@ -8,7 +8,7 @@ draft: false
 ---
 I recently followed a tutorial put out by TechnoTim called "[PostgreSQL Clustering the Hard Way](https://www.youtube.com/watch?v=RHwglGf_z40&t=2457s&pp=ygUJdGVjaG5vdGlt)". It is a fantastic video, he does a good job of walking you step by step though the instructions all while explaining what each thing is doing and what each line of configuration means. After following his tutorial and having my own HA PostgreSQL cluster, I wondered if I could do the same with some webservers. Certainly it should be easy, right? After all, a simple webservers should be the easiest thing to configure because they've been around as long as the internet has.
 
->[!danger] This is not a production-ready tutorial
+>[!CAUTION] This is not a production-ready tutorial
 >My methods in this post are not production ready. This is a quick-and-dirty project I did as a proof of concept; a real HA webserver should have TLS and proper Apache2 sites configured, as well as probably some other things I don't know about.
 # Prerequisite Configuration
 
