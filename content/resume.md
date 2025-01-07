@@ -18,9 +18,9 @@ showtoc: true
     Associates in Applied Engineering [2020]
 
 ### Certificates 
-- CompTIA A+
-- CompTIA Network+
-- CompTIA Security+
+- [CompTIA A+](https://www.credly.com/badges/1d1fd7f2-5e23-44c4-b6f2-06c2d33e627a)
+- [CompTIA Network+](https://www.credly.com/badges/f94136f6-ac69-40aa-a24f-eacb127fb94a)
+- [CompTIA Security+](https://www.credly.com/badges/61ba1495-d106-4b67-897b-c93cb885c8a6/)
 
 ## Professional Experience
 
