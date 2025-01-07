@@ -39,7 +39,7 @@ Ordinarily, these two servers would have the same content (synced using `rsync` 
 <body>
 
 <!-- Change this number depending on the web server name -->
-<h1> This is svr-01</h1>
+<h1> This is svr-01 </h1>
 
 </body>
 </html>
@@ -75,7 +75,7 @@ sudo systemctl restart haproxy
 
 Then navigating to the IP address of HA-01 I saw the page for SVR-01. Refreshing the page quickly a bunch of times forced it to load balance and so I also saw the page for SVR-02! Everything was working! I then copied the same configuration to HA-02.
 
-The last thing to get working is the Virtual IP using `keepalived`, so that `haproxy` doesn't become a single point of failure. This took a little bit more investigation. I am thankful for the information at [this site](https://packetpushers.net/blog/vrrp-linux-using-keepalived-2/).
+The last thing to get working is the Virtual IP (VIP) using `keepalived`, so that `haproxy` doesn't become a single point of failure. This took a little bit more investigation. I am thankful for the information at [this site](https://packetpushers.net/blog/vrrp-linux-using-keepalived-2/).
 
 First, install `keepalived` on HA-01
 
@@ -98,7 +98,7 @@ vrrp_instance web_server {
 }
 ```
 
-Copy the same to HAProxy-02, changing the `state` to `BACKUP` and the `priority` to any number lower than 100. Then restart `keepalived` on both HA-01 and HA-02.
+Copy the same to HA-02, changing the `state` to `BACKUP` and the `priority` to any number lower than 100. Then restart `keepalived` on both HA-01 and HA-02.
 
 ```
 sudo systemctl restart keepalived
@@ -110,7 +110,7 @@ This means our VIP was correctly resolved to HA-01's MAC address, which took our
 ## HA Wacky Webserver
 While doing the above, I realized that `keepalived` has no interest in port numbers, it is Layer 3 only, and `haproxy` has definitions for port numbers for each server declaration. Would it be possible then to have two webservers on different ports (say, 9080 and 9081) get routed though a virtual IP that was itself listening for web traffic on a different port (say 9090)? Only one way to find out!
 
-First I needed to make some web service available on a separate port. I looked into the APache2 documentation and saw they you can define multiple Listen interfaces, as well as multiple VirtualHosts. 
+First I needed to make some web service available on a separate port. I looked into the Apache2 documentation and saw they you can define multiple Listen interfaces, as well as multiple VirtualHosts. 
 
 So, on SVR-01 in `/etc/apache2/ports.conf` I added a second Listen directive. Now this VM is listening on both port `80` and port `9080`.
 
@@ -142,13 +142,13 @@ sudoedit /var/www/html2/index.html
 <body>
 
 <!-- Change these numbers depending on the web server -->
-<h1> This is wacky-svr-01 port 9080-</h1>
+<h1> This is wacky-svr-01 port 9080 </h1>
 
 </body>
 </html>
 ```
 
-I did similar things on SVR-02, except everywhere I put `9080` for the port number on SVR-01, I put `9081` on SVR-02. I was then able to access each new page at their respective IP:port combos.
+I did similar things on SVR-02, except everywhere I put `9080` for the port number on SVR-01, I put `9081` on SVR-02. I was then able to access each new page at their respective `IP:Port` combos.
 
 Then, on HA-01, I just had to add one new frontend and backend
 
@@ -173,4 +173,4 @@ Of course this could also be extended to include HA-02 and a new `keepalived` IP
 # Conclusion
 I have known about load balancing and Virtual IPs for a while now and always kind of assumed it was difficult or complicated to setup. I'm glad to see that for simple projects like this, it really wasn't that difficult. This gives me the courage to add Virtual IPs to more services in my homelab, such as DNS.
 
-**Challenge:** Can you configure `haproxy` to not load balance equally? Maybe change it from the default of (Ibelive) 50/50 to something like 90/10. Or change it to simply failover when one webserver goes down.
+**Challenge:** Can you configure `haproxy` to not load balance equally? Maybe change it from the default of (I believe) 50/50 to something like 90/10. Or change it to simply failover when one webserver goes down.
