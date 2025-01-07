@@ -47,7 +47,11 @@ Ordinarily, these two servers would have the same content (synced using `rsync` 
 
 I checked both once again, and they both showed my simple page. 
 
-Now onto `haproxy`. This configuration I was able to figure out by just resuming most of TechnoTim's configuration. I put the following in `/etc/haproxy/haproxy.cfg` on HA-01
+Now onto `haproxy`. It can be installed through the package manager as well.
+
+`sudo apt install haproxy`
+
+Once it was installed we can add the configuration. I was able to figure out by just resuming most of TechnoTim's configuration. I put the following in `/etc/haproxy/haproxy.cfg` on HA-01
 
 ``` 
 frontend apache_frontend
