@@ -41,4 +41,6 @@ From there I was able to play around with the web-interface and generally get to
 ## Deployment
 When I was finally ready to deploy it to my homelab I brought the computer home and reinstalled Proxmox so any configuration I did in testing wouldn't persist. Curently, I only have the one computer, so I wont have a cluster, but at this point, I don't really need that; maybe one day though...
 
-My first attempt was to make a disk image of my iMac that I could just import into Proxmox and connect to a VM.  I tried that by installing the `qemu-img` utility and saving the resulting image on my NAS. It took over a day to finish, so I was happy I was using [NTFY](https://ntfy.sh/) to notify me when it was done. I copied it over to the Proxmox node and tried to import it, but it didn't work
+My first attempt was to make a disk image of my iMac that I could just import into Proxmox and connect to a VM.  I tried that by installing the `qemu-img` utility and saving the resulting image on my NAS. It took over a day to finish, so I was happy I was using [NTFY](https://ntfy.sh/) to notify me when it was done. I copied it over to the Proxmox node and tried to import it, but it didn't work. It's possible I didn't do something properly, I will admit to only browsing the documentation briefly and not taking *everything* into account.
+
+Despite this hickuo, i decided it would probably be a good idea to start from scratch anyways.
