@@ -21,6 +21,7 @@ showtoc: true
 - [CompTIA A+](https://www.credly.com/badges/1d1fd7f2-5e23-44c4-b6f2-06c2d33e627a)
 - [CompTIA Network+](https://www.credly.com/badges/f94136f6-ac69-40aa-a24f-eacb127fb94a)
 - [CompTIA Security+](https://www.credly.com/badges/61ba1495-d106-4b67-897b-c93cb885c8a6/)
+- [AWS Certified Cloud Practitioner](https://www.credly.com/badges/bd6a7096-4e18-4f66-a3f1-f4908ebafc2b)
 
 ## Professional Experience
 
