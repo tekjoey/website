@@ -25,8 +25,19 @@ showtoc: true
 
 ## Professional Experience
 
+### System Administrator
+**Department of Justice (Contracted via Prism Inc)** [February 2025 - Present]
+
+### Radar, Airfield, and Weather Systems
+**Air National Guard** [January 2016 – Present]
+
+- Installed, maintained, tested, removed, and replaced mission-critical aircraft radio communication systems. 
+- Led engaging training sessions for multiple Airmen that increased job knowledge and job performance.
+- Promoted to the rank of Staff Sergeant after completion of Airmen Leadership School and demonstration of competency and integrity.
+- Obtained Secret Clearance.
+
 ### Technology Support Technician
-**University of South Carolina; College of Arts and Sciences** [February  2023 – Present]
+**University of South Carolina; College of Arts and Sciences** [February  2023 – February 2025]
 
 - Took over primary desktop support for Mathematics and Statistics departments 
     - Created inventory and provided continuation of support for over 150 desktop and laptop computers
@@ -48,14 +59,6 @@ showtoc: true
 - Troubleshot and solved over two-hundred incidents both in-person and remotely ranging from resetting credentials to analyzing failed hard drives.
 - Recommended and installed cost-effective and productive hardware and software for end-users.
 - Continually learned about new technologies and improved current skills through various online trainings.
-
-### Radar, Airfield, and Weather Systems
-**Air National Guard** [January 2016 – Present]
-
-- Installed, maintained, tested, removed, and replaced mission-critical aircraft radio communication systems. 
-- Led engaging training sessions for multiple Airmen that increased job knowledge and job performance.
-- Promoted to the rank of Staff Sergeant after completion of Airmen Leadership School and demonstration of competency and integrity.
-- Obtained Secret Clearance.
 
 ## Professional Development
 ### Homelab
