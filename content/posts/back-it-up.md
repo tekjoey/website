@@ -45,4 +45,34 @@ Thankfully I was still able to access that configuration, I delete dit, and ever
 
 Weird.
 
-But it got me thinking, I didn't have a solid process for restoring from a failure. I *did* have backups, but I didn't have a solid process.
+But it got me thinking, I didn't have a solid process for restoring from a failure. I *did* have backups, but I didn't have a solid process. I was backing up the data to an S3 bucket in BackBlaze, but I wasn't backing up the database or the config files. I was backing up the VM, but none of the individual containers. And despite using docker compose (as a psudo IaC option), i wasnt using git, so any changes were pretty much permanent.
+
+I decided enough was enough. Let's do this the right way!
+
+# The Plan
+
+So I did what any person would do nowadays, I turned to ChatGPT. It suggesteed some ideas, I added some others, asked some questions, did some research and finally, this is the plan I've come up with:
+
+- All databases will use Docker volumes. A script will be created to create backups of these databases regularly.
+- All other volumes with be NFS mounts from TrueNAS mounted via Docker NFS mounts (not mounted to the host). Since TrueNAS uses ZFS, snapshots of these dataset's can be taken, and the datasets can also be backued up to BackBlaze S2.
+- If a container's volume consists of purely configuratin files, those will be bind mounted and versioned with git.
+- My Compose files will be versioned with git
+- All environment variables will be plaved in `.env` files and encrypted
+- All Compose & `.env` files will be backed up to GitHub
+
+This should give me full "lift-and-shift" ability, meaning I can recreate any container individually and simply. Once this is fully implemented, I'm planning on spinning up a test VM and will attempt to actually recreate my production VM.
+
+# The Implementation.
+
+Some containers were easy to get setup with this new system. Traefik, for example, (my reverse proxy), only uses configuration files, no volume needed. It was already setup this way, so it was ready to go immediately. Others, however are a bit more complicated. Nextcloud for example.
+
+I am using the LinuxServer.io image for Nextcloud. This is a wonderful image that has two volumes, data and config. The config volume I had previously setup as a regular Docker volume, while the data volume was bind mounted to a folder on the host that itself was an NFS mounted dataset from TrueNAS. I wanted both of these to be NFS shaes, and both to be NFS Docker Volumes, cuttting out the middle man and connecting the container directly to the NFS server. This would also fix a minor problem I've had where when the host rebooted, the container would start before the NFS share was monted, requiring me to manually restart any container that relied on NFS.
+
+To make the config volume an NFS share, I would obviously need to export the data from the Docker volume and move it to the NFS server. That was easy enough to do with the following commands:
+
+```bash
+docker exec -it nextcloud tar -cf config.tar /config
+docker copy nextcloud:/config.tar ./config.tar
+```
+
+The first command create a `tar` file (the linux vesion of a zip file) of the config directory. The second command then copies that file out from the container to the host. Both of these commands need to be run while the container is running.
