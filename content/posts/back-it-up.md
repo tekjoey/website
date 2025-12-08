@@ -74,4 +74,61 @@ docker exec -it nextcloud tar -cf config.tar /config
 docker copy nextcloud:/config.tar ./config.tar
 ```
 
-The first command create a `tar` file (the Linux version of a zip file) of the config directory. The second command then copies that file out from the container to the host. Both of these commands need to be run while the container is running.
+The first command create a `tar` file (the Linux version of a zip file) of the config directory. The second command then copies that file out from the container to the host. Both of these commands need to be run while the container is running. After I copied the config.tar file out, I stopped both containers.
+
+I then created two child dataset on TrueNAS under my top-level Nextcloud dataset (the one currently holding just the data). These child datasets were "config" and "data". I copied the tar file into the "config" dataset, un-tar'ed it, then copied the data into the "data" dataset.
+
+Of course, I had a weird issue with the NFS folders. Since NFS treats each dataset as it's own file system, you can't share both the parent and child datasets via NFS. I had the datasets `pool/Nextcloud`, `pool/Nextcloud/config` and `pool/Nextcloud/data`all shared with NFS. When I transfered the config file into the config dataset, TrueNAS registered the increased size in the parent dataset (`pool/Nextcloud`), not the child dataset (`pool/Nextcloud/config`). But navigating through TrueNAS's shell, the config.tar file was nowhere to be found. It was really weird, and caused me even more stress (and lead to a few snapshot rollbacks). I then found [this post](https://forums.truenas.com/t/unable-to-write-to-child-datasets-within-nfs-share/47846) where the poster had the same problem. Thankfully the solution was easy, only share the child datsets. I did this, mounted them to the host, transfered all the relevant data, then unmounted them from the host and edited my docker Compse files to include two new volumes
+
+```docker compose
+services:
+  app:
+    image: lscr.io/linuxserver/nextcloud
+    volumes:
+      - nfs_config:/config
+      - nfs_data:/data
+...
+volumes:
+  nfs_config:
+    driver_opts:
+      type: nfs
+      o: addr=truenas.mckay.one,rw,nfsvers=4
+      device: ":/mnt/pool/nextcloud/config"
+  nfs_data:
+    driver_opts:
+      type: nfs
+      o: addr=truenas.mckay.one,rw,nfsvers=4
+      device: ":/mnt/pool/nextcloud/data"
+```
+
+Alright, cool! Everything should be setup, just a quick `docker compose up -d` and we'll be on our....
+
+502 Bad gateway
+
+Checking server logs, a whole bunch of "unable to write file, permision denied"
+
+What? Why?
+
+Using Docker Exec, I checked the permissions in the container, and all the data and config files were correct.
+
+At this point I was (preverbably) ripping my hair out. I tried a few other things, but nothing panned out. I was a bit desperate, and frantic at this point. I was so close, but i also felt way out of my leauge. So, once again, I turend to ChatGPT (One of these days I've gotta get a local LLM setup...) ChatGPT suggested that TrueNAS was applying root_squash to the mounts. I remember reading about that a few years ago. Thankfully, ChatGPT explained it pretty well
+
+>Your container runs as UID 1000, and your files on NFS are owned by 1000:1000, which is good.
+>
+>BUT you're mounting the NFS share as root (UID 0) inside the container — because Docker mounts volumes as root — and TrueNAS is most likely applying root_squash, which maps root → nobody (UID 65534).
+>
+>So even though the files look like they're owned by 1000:1000 inside the container, all operations coming from root get mapped to nobody when they hit the NFS server.
+>
+>This results in:
+>- Reads may work
+>- Writes fail
+>- Ownership appears right inside the container, but NFS silently denies operations
+>
+>This is exactly what you’re experiencing.
+
+That made sense! Since Linux relies heavely on UIDs and GIDs, the actual number of the user or group is important. UID 0 (the root acount) in the container was being mapped to user 65534 on the TrueNAs system, also known as `nobody`. This `nobody` user does not have access to the `pool/nextcloud/config` dataset on TrueNAS, so write opperations were failing. So all I had to do was explicently map the containers root user to TrueNAS's root user This can be done via the "Maproot User" and "Maproot Group" settings in the NFS share settings.
+
+NOW just a quick `docker compose down && docker compose up -d`...
+
+And it works! All of my files are there, as well as all of my contacts, calendars, and settings!
+
