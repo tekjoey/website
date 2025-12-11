@@ -29,7 +29,7 @@ They've always been on my TODO list, but other things have always caught my atte
 
 I recently had a scare in my homelab that made me re-think how I have things architected and how effective my backups actually are. This is a tale as old as time; the problem doesn't get fixed until it NEEDS to get fixed. Luckily for me, no data was lost, and I'm on track for some major improvements!
 
-# The Incident
+## The Incident
 
 I run a Nextcloud instance, and due to some poor configuration on my part I thought I had corrupted some data.
 I was playing around with some MINIO S3 buckets (a story for another time) and I mapped one to my Nextcloud account as an external device. I wasn't using it for anything, I just saw it as an option and wanted to play around.
@@ -49,7 +49,7 @@ But it got me thinking, I didn't have a solid process for restoring from a failu
 
 I decided enough was enough. Let's do this the right way!
 
-# The Plan
+## The Plan
 
 So I did what any person would do nowadays, I turned to ChatGPT. It suggested some ideas, I added some others, asked some questions, did some research and finally, this is the plan I've come up with:
 
@@ -61,7 +61,7 @@ So I did what any person would do nowadays, I turned to ChatGPT. It suggested so
 
 This should give me the granular ability that I want. I'll be able to surgically recreate an individual container, instead of affecting all containers at once. Once this is fully implemented, I'm planning on spinning up a test VM and will attempt to actually recreate my production VM.
 
-# The Implementation.
+## The Implementation.
 
 Some containers were easy to get setup with this new system. [Traefik](https://github.com/traefik/traefik), for example, (my reverse proxy), only uses configuration files, no real volume needed. It was already setup with its config files on a bind mounted folder on the host, so it was ready to go immediately. Others, however, are a bit more complicated. Nextcloud for example.
 
@@ -132,6 +132,6 @@ NOW just a quick `docker compose down && docker compose up -d`...
 
 And it works! All of my files are there, as well as all of my contacts, calendars, and settings!
 
-# Conclusion
+## Conclusion
 Well I learned a lot this go-around. I learned about NFS file permissions, NFS Volumes for Docker, tar-ing files and folders, Postgres' safe backup opperations, and the `docker cp` command. Much more is to come of course. I haven't *actually* backed anything up yet, just started setting up the framework to do so. Stay tuned for more on this topic!
 
