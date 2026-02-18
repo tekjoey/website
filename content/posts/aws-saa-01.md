@@ -6,7 +6,7 @@ tags:
     - journal
 categories:
     - Certifications
-draft: true
+draft: false
 # weight: 1
 # aliases: ["/first"]
 # hidemeta: false
