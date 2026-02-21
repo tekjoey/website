@@ -1,5 +1,5 @@
 ---
-title: '$100 mistake'
+title: 'How a 1GB file cost me $100'
 date: '2026-02-18'
 tags:
     - homelab
