@@ -7,7 +7,7 @@ tags:
     - backups
 categories:
     - Homelab
-draft: true
+draft: false
 # weight: 1
 # aliases: ["/first"]
 # hidemeta: false
