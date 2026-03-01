@@ -1,12 +1,12 @@
 ---
 title: 'AWS Solutions Architect Associate - Pt2 (IAM)'
-date: '2026-02-18'
+date: '2026-03-01'
 tags:
     - aws
     - journal
 categories:
     - Certifications
-draft: true
+draft: false
 # weight: 1
 # aliases: ["/first"]
 # hidemeta: false
