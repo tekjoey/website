@@ -37,18 +37,27 @@ The EC2 service is actually a collection of different, yet related, services. Th
 - ASG (Auto-Scaling Group). This is a service that, once configured, will automatically create or destroy new VMs as neccesssary. More on this later.
 
 Every computer needs 3 things; a CPU, memory, storage, and a set of instructions (in this case, an operating system). An EC2 instance is no different. When you begin to launch the instance, one of the first questions you'll be asked is which Amazon Machine Image you want to launch with.
-In its most basic state, an AMI is just an opperating system. But unlike an OS, an AMI can include prconfigured software. Amazon has a whole bunch of options, from basic OSs like Linux, Windows, and even macOS, to network appliances like firewalls or kuberneties nodes. 
+In its most basic state, an AMI is just an opperating system. But unlike an OS, an AMI can include prconfigured software. Amazon has a whole bunch of options, from basic OSs like Linux, Windows, and even macOS, to network appliances like firewalls or Kubernetes nodes. 
 They also have an image builder, so if you need a fully custom AMI, you can build that yourself.
 
 Once you have the AMI selected, it's time to select the Instance type, which combines the CPU and memory. AWS has a number of instance familes, each of which is designed for specific types of tasks
-- general Purpose: These offer a balance of CPU and memory. A sthe name implies, these are the go-tos for the average computing needs.
-- Compute optomized: These offer more CPU cores with less memory, as compared to the general purpose options. These instances excell at high volume work such as batch procesing, or media transcoding.
-- storage optomized: These offer millions of low-latency, random I/O operations per second, perfect for time-sensitive opperations such as databases, or certain data processing applications.
-- memory optomized: these offer more memory than the general purpose options, wih fewer CPU cores. These insatnces are for memory heavy workloads, such as in-memory databases, or certain analytics program.
-- HPC instance: These instances are best suted for high performace tasks such as complex model simulations or deel learning
-- accelerated computing: These instances have hardware accelerators, or co-processors, to perform functions such as precise floating-port opperations or graphics processing more efficiently.
+- General Purpose: These offer a balance of CPU and memory. A sthe name implies, these are the go-tos for the average computing needs.
+- Compute Optimized: These offer more CPU cores with less memory, as compared to the general purpose options. These instances excell at high volume work such as batch procesing, or media transcoding.
+- Storage Optimized: These offer millions of low-latency, random I/O operations per second, perfect for time-sensitive opperations such as databases, or certain data processing applications.
+- Memory Optimized: these offer more memory than the general purpose options, wih fewer CPU cores. These insatnces are for memory heavy workloads, such as in-memory databases, or certain analytics program.
+- HPC Instance: These instances are best suted for high performace tasks such as complex model simulations or deel learning
+- Accelerated Computing: These instances have hardware accelerators, or co-processors, to perform functions such as precise floating-port opperations or graphics processing more efficiently.
 
 Each one of these familes have many pre-configured options. You can browse through them at [https://instances.vantage.sh/](https://instances.vantage.sh/)
 
-Lastly, each VM needs durrabl storage. That's where EBS comes in. 
+Lastly, each VM needs durable storage. That's where EBS comes in, it provisions and manages all the virtual drives in your account. Obviously your EC2 Instance needs a main/root drive for the opperating system, but you can also add more drives, just like you can in a physical server.
 
+EBS Volumes come with a few different options, which all boil down to "how fast and how performant do you want your drive". You can choose from multiple options, some of which are infrequent cold storage (HDD-based st1), general purpose SSDs (gp3), or maximum performance for critical databases (io2 Block Express)
+
+After selecting the AMI, Instance type and creating an EBS volume, you *technically* have everything you need. However, the VM will be isolated because we havent said anythig about networking yet. We'll talk later about VPCs and network subnets, for now those can just be set to defaults. However, one thing we do need to talk about is security groups!
+
+Security Groups are collections of firewall rules. Their main advantage is the fact that they are a seperate entity from the EC2 instance, so you can apply the same set of firewall rules to multiple EC2 instances. When an security group is first created, it has a default rule to allow port 22 (SSH) from any IP address, and to allow all outbound ports/IPs from the VM. You can (and obviously, should) change this to suit your needs. This is the default just to get you up and running via SSH.
+
+For those that use dedicated or spot instnces, the "Advanced Details" section is where you set that, as well as a plethora of other options such as joining a domain, changing shutdown behavior, or any other specific requirments you may have. An option that I only recently discovered was the "user Data" section. Here you can add a script to run durring the first boot of machine. This can be used to update the package repository and install specific programs, or anything else your workflow requires on first boot. Note: this script ONLy runs on first boot, every boot afterwards will be normal and will not execute this script.
+
+Well thats enough for EC2 for now!
