@@ -7,7 +7,7 @@ tags:
     - backups
 categories:
     - Homelab
-draft: true
+draft: false
 
 description: or 'This is why we have backups, people!'
 
